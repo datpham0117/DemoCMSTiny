@@ -1,0 +1,56 @@
+﻿@model IEnumerable<DemoCMS.Models.NewsViewModel>
+
+<div class="ml-5 mr-5">
+    <div class="modal-header">
+        @*@Html.ActionLink(" Add New", "AddNew", new {id="" }, new { @class = "btn btn-success m-1 far fa-plus-square" })*@
+        <a asp-area="" asp-controller="News" asp-action="AddNews" class="btn btn-success float-right"><i class="fas fa-plus-square"></i> Add new</a>
+    </div>
+
+    <table id="table-data" class="table table-bordered table-hover table-apptech mt-4 w-100" border="1">
+        <thead>
+            <tr style="color: White; background-color: #4267B2;">
+                <td style="display:none;"><b>@Html.DisplayNameFor(models => models.ID)</b></td>
+                <td><b>@Html.DisplayNameFor(models => models.Number)</b></td>
+                <td><b>@Html.DisplayNameFor(models => models.Name)</b></td>
+                <td><b>@Html.DisplayNameFor(models => models.Description)</b></td>
+                <td style="width:250px;"><b>Option</b></td>
+            </tr>
+        </thead>
+        @if (Model != null)
+        {
+            foreach (var item in Model)
+            {
+                <tr id="controlRow" runat="server" class="apptech-pull-up">
+                    <td style="display:none;">
+                        @item.ID
+                    </td>
+                    <td>
+                        <div class="d-block w-100 h-100 text-decoration-none text-dark p-10px">
+                            @item.Number
+                        </div>
+                    </td>
+                    <td>
+                        <div class="d-block w-100 h-100 text-decoration-none text-dark p-10px">
+                            @item.Name
+                        </div>
+                    </td>
+                    <td>
+                        @item.Description
+                    </td>
+                    <td>
+                        <div class="row">
+                            <div class="col-6">
+                                @*@Html.ActionLink(" Edit", "Edit", new { id=item.ID }, new { @class = "btn btn-success m-1 far fa-edit" })*@
+                                <a asp-area="" asp-controller="News" asp-action="Edit" asp-route-id=@item.ID class="btn btn-success m-1"><i class="far fa-edit"></i> Edit</a>
+                            </div>
+                            <div class="col-6">
+                                @*@Html.ActionLink(" Delete", "Delete", new { id = item.ID }, new { @class = "btn btn-danger m-1 far fa-trash-alt" })*@
+                                <a asp-area="" asp-controller="" asp-action="" asp-route-id=@item.ID class="btn btn-danger m-1"><i class="far fa-trash-alt"></i> Delete</a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            }
+        }
+    </table>
+</div>
