@@ -10,12 +10,13 @@ using System.Threading.Tasks;
 
 namespace DemoCMS.Controllers
 {
+    //[Route("News")]
     public class NewsController : Controller
     {
-        public static IWebHostEnvironment environment;
-        public NewsController(IWebHostEnvironment env)
+        private IHostingEnvironment hostingEnvironment;
+        public NewsController(IHostingEnvironment hostingEnvironment)
         {
-            environment = env;
+            this.hostingEnvironment = hostingEnvironment;
         }
         public IActionResult Index()
         {
@@ -43,11 +44,21 @@ namespace DemoCMS.Controllers
             model = new NewsViewModel { ID = 1, Number = "News1", Name = "News1", Description = "News1 is description", NewsContent = "News1 is NewsContent" };
             return View(model);
         }
+        //[Route("upload")]
+        //[HttpPost]
+        //public IActionResult Upload(IFormFile upload)
+        //{
+        //    var fileName = DateTime.Now.ToString("yyyyMMddHHmmss") + upload.FileName;
+        //    var path = Path.Combine(Directory.GetCurrentDirectory(), hostingEnvironment.WebRootPath, "img", fileName);
+        //    var stream = new FileStream(path, FileMode.Create);
+        //    upload.CopyToAsync(stream);
+        //    return new JsonResult(new { path = "/img/" + fileName });
+        //}
         [HttpPost]
         public async Task<string> uploadImg(IFormFile file)
         {
             string message;
-            var saveimg = Path.Combine(environment.WebRootPath, "img", file.FileName);
+            var saveimg = Path.Combine(hostingEnvironment.WebRootPath, "img", file.FileName);
             string imgext = Path.GetExtension(file.FileName);
 
             if (imgext == ".jpg" || imgext == ".png")
@@ -66,5 +77,6 @@ namespace DemoCMS.Controllers
             }
             return "filename : " + saveimg + " message :" + message;
         }
+
     }
 }

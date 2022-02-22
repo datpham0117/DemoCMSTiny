@@ -11,6 +11,18 @@
     <link rel="stylesheet" href="~/css/site.css" />
     <script src="~/Plugins/tinymce/tinymce.min.js"></script>
     <script src="~/Plugins/tinymce/tinymce.init.js"></script>
+    @*<script src="https://cdn.ckeditor.com/ckeditor5/32.0.0/classic/ckeditor.js"></script>*@
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdn.ckeditor.com/4.10.1/standard/ckeditor.js"></script>
+    <script>
+        $(document).ready(function () {
+            CKEDITOR.replace('txtareaContent', {
+                height: 400,
+                /*filebrowserUploadUrl: '/NewsCkEditor/img',*/
+                filebrowserUploadUrl: '/img'
+            });
+        });
+    </script>
     @RenderSection("style", required: false)
 </head>
 <body class="hold-transition sidebar-mini @Constants.SideBarType layout-fixed layout-navbar-fixed layout-footer-fixed">
@@ -155,7 +167,6 @@
         </div>
     </footer>
     @*<script src="~/lib/jquery/dist/jquery.js"></script>*@
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
     @*<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>*@
     <script src="~/lib/twitter-bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
