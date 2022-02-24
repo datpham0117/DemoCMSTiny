@@ -21,6 +21,7 @@
     autosave_retention: '2m',
     image_advtab: true,
     images_upload_url: '/News/uploadImg',
+    automatic_upload: true,
     importcss_append: true,
     template_cdate_format: '[Date Created (CDATE): %m/%d/%Y : %H:%M:%S]',
     template_mdate_format: '[Date Modified (MDATE): %m/%d/%Y : %H:%M:%S]',
